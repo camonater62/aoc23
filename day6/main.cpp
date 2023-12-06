@@ -76,15 +76,12 @@ int main() {
         }
     }
 
-    long T = stol(fullTime);
-    long D = stol(fullDistance);
+    double bigTime = stod(fullTime);
+    double bigDistance = stod(fullDistance);
 
-    long S = long(sqrt(T * T - 4 * D));
+    int count = int(sqrt(bigTime * bigTime - 4 * bigDistance));
 
-    long lower = (T - S) / 2;
-    long upper = (T + S) / 2;
-
-    cout << (upper - lower) << endl;
+    cout << count << endl;
 
     return 0;
 }
