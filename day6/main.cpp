@@ -1,3 +1,4 @@
+#include <cmath>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -75,20 +76,15 @@ int main() {
         }
     }
 
-    long bigTime = stol(fullTime);
-    long bigDistance = stol(fullDistance);
+    long T = stol(fullTime);
+    long D = stol(fullDistance);
 
-    long count = 0;
-    for (long j = 0; j <= bigTime; j++) {
-        long delay = j;
-        long speed = j;
-        long travelled = (bigTime - j) * speed;
-        // cout << travelled << endl;
-        if (travelled > bigDistance) {
-            count++;
-        }
-    }
-    cout << count << endl;
+    long S = sqrt(T * T - 4 * D);
+
+    long lower = long((T - S) / 2);
+    long upper = long((T + S) / 2);
+
+    cout << (upper - lower) << endl;
 
     return 0;
 }
