@@ -72,7 +72,7 @@ public:
 };
 
 int main() {
-    ifstream input("input.txt");
+    ifstream input("example.txt");
     string line;
 
     getline(input, line);
@@ -134,15 +134,6 @@ int main() {
         ranges.emplace_back(seeds[i], seeds[i] + seeds[i + 1]);
 
         for (int j = 0; j < mappings.size(); j++) {
-
-            sort(mappings[j].begin(), mappings[j].end(),
-                [](Mapping a, Mapping b) { return a.source < b.source; });
-            sort(ranges.begin(), ranges.end(), [](Range a, Range b) { return a.start < b.start; });
-
-            // for (Range r : ranges) {
-            //     cout << "[" << r.start << ", " << r.end << "]";
-            // }
-            // cout << endl;
             vector<Range> newRanges;
             while (ranges.size() > 0) {
                 Range r = ranges[ranges.size() - 1];
@@ -160,6 +151,8 @@ int main() {
                         if (o.end < r.end) {
                             ranges.emplace_back(o.end + 1, r.end);
                         }
+                        sort(ranges.begin(), ranges.end(),
+                            [](Range a, Range b) { return a.start < b.start; });
 
                         found = true;
                         break;
@@ -167,6 +160,9 @@ int main() {
                 }
                 if (!found) {
                     newRanges.push_back(r);
+                } else {
+                    sort(newRanges.begin(), newRanges.end(),
+                        [](Range a, Range b) { return a.start < b.start; });
                 }
             }
 
@@ -174,8 +170,7 @@ int main() {
         }
 
         for (Range r : ranges) {
-            // Not sure why -1
-            minLocation = min(minLocation, r.start) - 1;
+            minLocation = min(minLocation, r.start);
         }
     }
 
