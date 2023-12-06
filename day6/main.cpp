@@ -79,10 +79,10 @@ int main() {
     long T = stol(fullTime);
     long D = stol(fullDistance);
 
-    long S = sqrt(T * T - 4 * D);
+    long S = long(sqrt(T * T - 4 * D));
 
-    long lower = long((T - S) / 2);
-    long upper = long((T + S) / 2);
+    long lower = (T - S) / 2;
+    long upper = (T + S) / 2;
 
     cout << (upper - lower) << endl;
 
