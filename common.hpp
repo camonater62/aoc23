@@ -98,3 +98,26 @@ template <typename T> T sum(const std::vector<T> &arr) {
     }
     return total;
 }
+
+template <typename T> T gcd(T a, T b) {
+    while (b != 0) {
+        T temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+template <typename T> T lcm(T a, T b) {
+    return (a * b) / (gcd(a, b));
+}
+
+template <typename T> T findLCM(const std::vector<T> &arr) {
+    T ans = arr[0];
+
+    for (size_t i = 1; i < arr.size(); i++) {
+        ans = lcm(ans, arr[i]);
+    }
+
+    return ans;
+}
