@@ -1,4 +1,4 @@
-// leijurv
+// Solution inspired/based off leijurv on reddit
 
 #include "../common.hpp"
 
